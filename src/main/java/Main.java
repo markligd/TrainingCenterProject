@@ -1,63 +1,39 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        HashMap<String, Integer> JavaDeveloper = new HashMap<>();
-        JavaDeveloper.put("Java", 16);
-        JavaDeveloper.put("JDBC", 24);
-        JavaDeveloper.put("Spring", 16);
-        Courses javaDeveloperCourses = new Courses("Java Developer", JavaDeveloper);
-        System.out.println(javaDeveloperCourses.courseDuration);
 
-        HashMap<String, Integer> AQE = new HashMap<>();
-        AQE.put("Test Design", 10);
-        AQE.put("Page Object", 16);
-        AQE.put("Selenium", 16);
-        Courses aqeCourses = new Courses("AQE", AQE);
-        System.out.println(aqeCourses.courseDuration);
-
+        //blank strings left for tests
 
         Student Student1 = new Student("olek", "ivanov", "Java Developer", "");
         Student Student2 = new Student("ol", "ivav", "AQE", "");
 
-        Student1.setNewList(javaDeveloperCourses);
-        Student2.setNewList(aqeCourses);
+        Course course1 = new Course("Java", 16);
+        Course course2 = new Course("JDBC", 24);
+        Course course3 = new Course("Spring", 16);
 
-        System.out.println(Student1.newList.get(0).courses);
-        System.out.println(Student2.newList.get(0).courses);
-
-
-        System.out.println("Enter launch date of first person DD-MM-YYYY");
-        String input = "2022-07-11 10:00:00";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-        LocalDateTime startDate = LocalDateTime.parse(input, formatter);
-//        LocalDateTime reportDate = LocalDateTime.now();
-        LocalDateTime reportDate = LocalDateTime.parse("2022-07-13 12:00:00", formatter);
+        Course course4 = new Course("Test Design", 10);
+        Course course5 = new Course("Page Object", 16);
+        Course course6 = new Course("Selenium", 16);
 
 
-        Calculations newCalc = new Calculations();
-        newCalc.sumCoursesDuration(JavaDeveloper, startDate, reportDate);
+        Student1.setNewList(course1);
+        Student1.setNewList(course2);
+        Student1.setNewList(course3);
+
+        Student2.setNewList(course4);
+        Student2.setNewList(course5);
+        Student2.setNewList(course6);
 
 
-//
-//        String input = "";
-//        try {
-//            System.out.println("Enter launch date of first person DD-MM-YYYY");
-//            Scanner scanner = new Scanner(System.in);
-//            input = scanner.nextLine();
-//            //przerobic na date
-//
-//            Date newDate = new SimpleDateFormat("dd-MM-yyyy").parse(input);
-//            System.out.println(newDate);
-//
-//
-//        } catch (Exception e){
-//            System.out.println(e);
-//        }
+        Calculations calc1 = new Calculations(Student1);
+        int javaDeveloperCoursesDuration = calc1.calculateDuration();
+        System.out.println(javaDeveloperCoursesDuration);
+
+        Calculations calc2 = new Calculations(Student2);
+        int aqeCoursesDuration = calc2.calculateDuration();
+        System.out.println(aqeCoursesDuration);
 
 
     }
