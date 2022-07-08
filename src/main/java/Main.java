@@ -1,14 +1,15 @@
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        //blank strings left for tests
 
-        Student Student1 = new Student("olek", "ivanov", "Java Developer", "");
-        Student Student2 = new Student("ol", "ivav", "AQE", "");
 
+
+        List<Course> javaCourseList = new ArrayList<>();
+        List<Course> aqeCourseList = new ArrayList<>();
         Course course1 = new Course("Java", 16);
         Course course2 = new Course("JDBC", 24);
         Course course3 = new Course("Spring", 16);
@@ -18,22 +19,23 @@ public class Main {
         Course course6 = new Course("Selenium", 16);
 
 
-        Student1.setNewList(course1);
-        Student1.setNewList(course2);
-        Student1.setNewList(course3);
-
-        Student2.setNewList(course4);
-        Student2.setNewList(course5);
-        Student2.setNewList(course6);
+        Student student1 = new Student("olek", "ivanov", "Java Developer", "", javaCourseList);
+        Student student2 = new Student("ol", "ivav", "AQE", "", aqeCourseList );
 
 
-        Calculations calc1 = new Calculations(Student1);
-        int javaDeveloperCoursesDuration = calc1.calculateDuration();
-        System.out.println(javaDeveloperCoursesDuration);
 
-        Calculations calc2 = new Calculations(Student2);
-        int aqeCoursesDuration = calc2.calculateDuration();
-        System.out.println(aqeCoursesDuration);
+        javaCourseList.add(course1);
+        javaCourseList.add(course2);
+        javaCourseList.add(course3);
+
+        aqeCourseList.add(course4);
+        aqeCourseList.add(course5);
+        aqeCourseList.add(course6);
+
+
+        System.out.println(Calculations.calculateDuration(student1));
+        System.out.println(Calculations.calculateDuration(student2));
+
 
 
     }

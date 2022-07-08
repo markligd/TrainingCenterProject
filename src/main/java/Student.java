@@ -1,29 +1,31 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class Student {
 
     private String firstName;
     private String secondName;
     private String position;
-    private String startDate; // here will be "launch date", when employee starts work implemented with use of scanner
-    private ArrayList<Course> newList;
+    private String startDate;
+    private List<Course> courseList;
 
+//start date as localdatetime
 
-    public Student(String firstName, String secondName, String position, String startDate) {
+    public Student(String firstName, String secondName, String position, String startDate, List<Course> courseList) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.position = position;
         this.startDate = startDate;
-        this.newList = new ArrayList<>();
+        this.courseList = courseList;
 
     }
 
-    public ArrayList<Course> getNewList() {
-        return newList;
+    public List<Course> getCourseList() {
+        return courseList;
     }
 
-    public void setNewList(Course newList) {
-        this.newList.add(newList);
+    //ustawic cala liste jako parametr
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
     }
 
     public String getFirstName() {

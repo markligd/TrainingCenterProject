@@ -1,30 +1,24 @@
-import java.time.LocalDateTime;
-
 public class Calculations {
+    private int coursesDuration = 0;
 
-    private Student student;
-    //    private int coursesDuration;
-    private LocalDateTime reportTime;
+    private Calculations() {
 
-    public Calculations(Student student) {
-        this.student = student;
-        this.reportTime = LocalDateTime.now();
     }
 
-    public int calculateDuration() {
+    public static int calculateDuration(Student student) {
         int a = 0;
-        for (Course i : student.getNewList()) {
-            a += i.getDuration();
-
+        for (int i = 0; i < student.getCourseList().size(); i++){
+            a += (student.getCourseList().get(i).getDuration());
         }
         return a;
     }
 
-////    public static void sumCoursesDuration(List<Course>, LocalDateTime startDate, LocalDateTime reportDate) {
-////        int sumOFCoursesDuration = 0;
-////        for (Integer value : Course.ge) {
-////            sumOFCoursesDuration += value;
-////        }
+    //public void daysToTheEndOfProgram(int coursesDuration, LocalDateTime startDate, LocalDateTime reportDate) {
+//        int sumOFCoursesDuration = 0;
+//        for (Integer value : Course.ge) {
+//            sumOFCoursesDuration += value;
+//        }
+
 //
 //        AtomicReference<Integer> weekendDays = new AtomicReference<>(0);
 //        IntStream.range(1, sumOFCoursesDuration / 8 + 1).forEachOrdered(n -> {
@@ -71,6 +65,5 @@ public class Calculations {
 //    LocalDateTime reportDate = LocalDateTime.parse("2022-07-13 12:00:00", formatter);
 //
 //
-
 
 }
