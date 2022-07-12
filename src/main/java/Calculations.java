@@ -1,69 +1,88 @@
+import java.time.LocalDateTime;
+import java.util.Objects;
+
 public class Calculations {
-    private int coursesDuration = 0;
 
     private Calculations() {
 
     }
 
+    //zamiana na stream
     public static int calculateDuration(Student student) {
-        int a = 0;
-        for (int i = 0; i < student.getCourseList().size(); i++){
-            a += (student.getCourseList().get(i).getDuration());
+        int sumOfCoursesDuration = 0;
+        for (int i = 0; i < student.getCourseList().size(); i++) {
+            sumOfCoursesDuration += (student.getCourseList().get(i).getDuration());
         }
-        return a;
+        return sumOfCoursesDuration;
     }
 
-    //public void daysToTheEndOfProgram(int coursesDuration, LocalDateTime startDate, LocalDateTime reportDate) {
-//        int sumOFCoursesDuration = 0;
-//        for (Integer value : Course.ge) {
-//            sumOFCoursesDuration += value;
-//        }
 
+    public static int calculateHowManySaturdaysAndSundays(int sumOfCoursesDuration, LocalDateTime startDate) {
+        int weekendDays = 0;
+
+        for (int i = 0; i <= (sumOfCoursesDuration / 8 + weekendDays - 1); i++) {
+            if ((Objects.equals(String.valueOf(startDate.plusDays(i).getDayOfWeek()), "SATURDAY"))) {
+
+                weekendDays += 2;
+
+            }
+        }
+        if (sumOfCoursesDuration % 8 != 0 && (Objects.equals(String.valueOf(startDate.plusDays((sumOfCoursesDuration / 8)).plusDays(weekendDays).getDayOfWeek()), "SATURDAY"))) {
+            weekendDays += 2;
+        }
+        System.out.println(weekendDays);
+        return weekendDays;
+
+    }
 //
-//        AtomicReference<Integer> weekendDays = new AtomicReference<>(0);
-//        IntStream.range(1, sumOFCoursesDuration / 8 + 1).forEachOrdered(n -> {
-//            if (Objects.equals(String.valueOf(startDate.plusDays(n).getDayOfWeek()), "SATURDAY") || Objects.equals(String.valueOf(startDate.plusDays(n).getDayOfWeek()), "SUNDAY")) {
-//                weekendDays.set(weekendDays.get() + 1);
-//            }
+//    public static LocalDateTime calculateEndDate(int sumOfCoursesDuration, LocalDateTime startDate, int weekendDays) {
+//        //LocalDateTime endDate = startDate.plusDays((sumOfCoursesDuration / 8) + weekendDays).plusHours(sumOfCoursesDuration % 8);
 //
-//        });
-//        LocalDateTime endDate = startDate.plusDays((sumOFCoursesDuration / 8) + weekendDays.get()).plusHours(sumOFCoursesDuration % 8);
-////        Duration duration = Duration.between(reportDate, endDate);
+//        LocalDateTime endDate = startDate.plusDays((sumOfCoursesDuration / 8) + weekendDays).minusDays(1).plusHours(8);
+//        if (sumOfCoursesDuration % 8 != 0) {
 //
-//        System.out.println(endDate);
-//        System.out.println(reportDate);
+//            endDate = endDate.plusDays(1).withHour(10).plusHours(sumOfCoursesDuration % 8);
 //
-////        System.out.println(endDate.minusDays(reportDate.getDayOfMonth()).minusDays(weekendDays.get()).getDayOfMonth());
-////        System.out.println((18 - reportDate.getHour() + endDate.getHour()-10));
-//
-//        if (reportDate.getHour() > 10) {
-//            int sumof = (sumOFCoursesDuration % 8) + (18 - reportDate.getHour());
-//            if (sumof >= 8) {
-//                System.out.println((endDate.minusDays(reportDate.getDayOfMonth()).minusDays(weekendDays.get()).getDayOfMonth() + 1));
-//                System.out.println(sumof % 8);
-//            } else {
-//                System.out.println((endDate.minusDays(reportDate.getDayOfMonth()).minusDays(weekendDays.get()).getDayOfMonth()));
-//                System.out.println(sumof);
-//            }
-//        } else {
-//            System.out.println((endDate.minusDays(reportDate.getDayOfMonth()).minusDays(weekendDays.get()).getDayOfMonth()));
-//            System.out.println((sumOFCoursesDuration % 8));
 //        }
-//
-//
-////        System.out.println(reportDate.minusHours(endDate.getHour()).getHour());
-//        System.out.println(endDate.getHour());
-//        System.out.println(reportDate.getHour());
+//        System.out.println(endDate);
+//        System.out.println(startDate);
+//        return endDate;
 //    }
 //
-//    System.out.println("Enter launch date of first person DD-MM-YYYY");
-//    String input = "2022-07-11 10:00:00";
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //
-//    LocalDateTime startDate = LocalDateTime.parse(input, formatter);
-//    //        LocalDateTime reportDate = LocalDateTime.now();
-//    LocalDateTime reportDate = LocalDateTime.parse("2022-07-13 12:00:00", formatter);
+////    public static void calculateHoursFromTwoDates(LocalDate startDate, LocalDate reportDate) {
+////        int remainingHoursBetweenTwoDates = 0;
+////    }
 //
 //
+//    public static void calculateDaysToTheEndOfCourseProgram(int sumOfCoursesDuration, LocalDateTime startDate, LocalDateTime reportDate) {
+//        int numberOfWeekendDays = calculateHowManySaturdaysAndSundays(sumOfCoursesDuration, startDate);
+//        LocalDateTime endDate = calculateEndDate(sumOfCoursesDuration, startDate, numberOfWeekendDays);
+//
+//        if (reportDate.getHour() > 10) {
+//            int sumOf = (sumOfCoursesDuration % 8) + (18 - reportDate.getHour());
+//            if (sumOf >= 8) {
+//                System.out.println((endDate.minusDays(reportDate.getDayOfMonth()).minusDays(numberOfWeekendDays).getDayOfMonth()) + " days");
+//                System.out.println(sumOf % 8 + " hours");
+//            } else {
+//                System.out.println((endDate.minusDays(reportDate.getDayOfMonth()).minusDays(numberOfWeekendDays).getDayOfMonth()) + " days");
+//                System.out.println(sumOf + " hours");
+//            }
+//        } else {
+//            System.out.println((endDate.minusDays(reportDate.getDayOfMonth()).minusDays(numberOfWeekendDays).getDayOfMonth()));
+//            System.out.println(" days");
+//            System.out.println((sumOfCoursesDuration % 8));
+//            System.out.println(" hours");
+//        }
+//
+//
+//        System.out.println(endDate.getHour());
+//        System.out.println(reportDate.getHour());
+//        //return endDate.getHour() + "days" + reportDate.getHour() + "hours";
+//    }
+
 
 }
+
+
+

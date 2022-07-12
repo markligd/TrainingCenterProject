@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Student {
@@ -5,12 +6,12 @@ public class Student {
     private String firstName;
     private String secondName;
     private String position;
-    private String startDate;
+    private LocalDateTime startDate;
     private List<Course> courseList;
 
-//start date as localdatetime
 
-    public Student(String firstName, String secondName, String position, String startDate, List<Course> courseList) {
+
+    public Student(String firstName, String secondName, String position, LocalDateTime startDate, List<Course> courseList) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.position = position;
@@ -23,7 +24,7 @@ public class Student {
         return courseList;
     }
 
-    //ustawic cala liste jako parametr
+
     public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
     }
@@ -41,4 +42,7 @@ public class Student {
     }
 
 
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
 }
