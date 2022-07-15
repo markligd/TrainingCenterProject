@@ -1,5 +1,5 @@
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +14,7 @@ public class StudentPositionTest {
     private Student student2;
 
 
-    @Before
+    @BeforeEach
     public void setUp(){
         String input = "2022-07-11 10:00:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

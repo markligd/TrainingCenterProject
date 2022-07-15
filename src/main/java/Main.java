@@ -7,11 +7,13 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         //changes needed, input from console as start date in specific format.
-        String input = "2022-07-11 10:00:00";
+        String input = "2022-07-11 12:00:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime startDate = LocalDateTime.parse(input, formatter);
-        LocalDateTime reportDate = LocalDateTime.parse("2022-07-13 15:00:00", formatter);
+        LocalDateTime reportDate = LocalDateTime.parse("2022-07-13 12:00:00", formatter);
+
 
 
         List<Course> javaCourseList = new ArrayList<>();
@@ -37,9 +39,10 @@ public class Main {
         aqeCourseList.add(course6);
 
 
-        Calculations.calculateHowManySaturdaysAndSundays(129, startDate);
-        //Calculations.calculateDaysToTheEndOfCourseProgram(1, startDate, reportDate);
-        //System.out.println(reportDate);
+        Calculations.calculateDaysToTheEndOfCourseProgram(79, startDate, reportDate);
+
+
+
 
     }
 
