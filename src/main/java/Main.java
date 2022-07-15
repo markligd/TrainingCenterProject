@@ -39,7 +39,7 @@ public class Main {
         aqeCourseList.add(course6);
 
 
-        Calculations.calculateDaysToTheEndOfCourseProgram(79, startDate, reportDate);
+        Calculations.calculateDaysToTheEndOfCourseProgram(114, startDate, reportDate);
 
 
 
