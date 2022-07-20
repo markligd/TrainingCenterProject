@@ -91,7 +91,7 @@ public class Calculations {
 
 
         Duration duration = Duration.between(reportDate, endDate);
-        if (duration.toHours() >= 0) {
+        if (duration.toHours() > 0) {
             System.out.println("Training is not finished. " + duration.toHours() / 24 + " days " + duration.toHours() % 24 + " hours to the end of course program");
 
         } else {
