@@ -2,19 +2,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
 
-        //changes needed, input from console as start date in specific format.
-        String input = "2022-07-11 12:00:00";
+        System.out.println("Please type Program start date, Working hours: 10-17 (yyyy-MM-dd HH:00:00)");
+        Scanner scanner1 = new Scanner(System.in);
+        String input = scanner1.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime startDate = LocalDateTime.parse(input, formatter);
-        LocalDateTime reportDate = LocalDateTime.parse("2022-07-13 12:00:00", formatter);
 
-
+        LocalDateTime reportDate = LocalDateTime.now();
 
         List<Course> javaCourseList = new ArrayList<>();
         List<Course> aqeCourseList = new ArrayList<>();
@@ -39,9 +40,8 @@ public class Main {
         aqeCourseList.add(course6);
 
 
-        Calculations.calculateDaysToTheEndOfCourseProgram(114, startDate, reportDate);
-
-
+        ReportGenerator.generateReport(student1, Calculations.calculateDuration(student1), startDate, reportDate);
+        ReportGenerator.generateReport(student2, Calculations.calculateDuration(student2), startDate, reportDate);
 
 
     }

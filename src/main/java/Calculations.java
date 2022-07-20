@@ -1,4 +1,5 @@
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 
@@ -6,7 +7,7 @@ public class Calculations {
     private Calculations() {
     }
 
-    //zamiana na stream
+
     public static int calculateDuration(Student student) {
         int sumOfCoursesDuration = 0;
         for (int i = 0; i < student.getCourseList().size(); i++) {
@@ -28,7 +29,7 @@ public class Calculations {
                 weekendDays += 2;
             }
         }
-        System.out.println("Weekend days: " + weekendDays);
+
         return weekendDays;
     }
 
@@ -53,7 +54,6 @@ public class Calculations {
         }
         if (((sumOfCoursesDuration % 8) + (startDate.getHour())) <= 18) {
             endDate = endDate.plusHours(sumOfCoursesDuration % 8);
-            System.out.println(startDate.getHour());
             if (endDate.getHour() == 10 && endDate.minusDays(1).getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
 
                 endDate = endDate.minusDays(3).withHour(10).plusHours(8);
@@ -76,30 +76,37 @@ public class Calculations {
         }
 
 
-        System.out.println("Start date: " + startDate);
-        System.out.println("End date:   " + endDate);
+//        System.out.println("Start date: " + startDate + "\n");
+//        System.out.println("End date:   " + endDate + "\n");
         return endDate;
 
 
     }
 
 
-    public static void calculateDaysToTheEndOfCourseProgram(int sumOfCoursesDuration, LocalDateTime startDate, LocalDateTime reportDate) {
+    public static long calculateDaysToTheEndOfCourseProgram(int sumOfCoursesDuration, LocalDateTime startDate, LocalDateTime reportDate) {
         int numberOfWeekendDays = calculateHowManySaturdaysAndSundays(sumOfCoursesDuration, startDate);
         LocalDateTime endDate = calculateEndDate(sumOfCoursesDuration, startDate, numberOfWeekendDays);
+        long numberOfHours;
 
 
-//        Duration duration = Duration.between(endDate, reportDate);
-//        System.out.println(duration + " duration");
-//        Period period = Period.between(endDate.toLocalDate(), reportDate.toLocalDate());
-//        System.out.println(period + " period");
+        Duration duration = Duration.between(reportDate, endDate);
+        if (duration.toHours() >= 0) {
+            System.out.println("Training is not finished. " + duration.toHours() / 24 + " days " + duration.toHours() % 24 + " hours to the end of course program");
 
-//        PeriodType ptype = PeriodType.yearMonthDayTime();
-//        Period diff = new Period(startDate, endDate, ptype);
-//        System.out.println(diff);
+        } else {
+            System.out.println("Training completed. " + Math.abs((duration.toHours() / 24)) + " days " + Math.abs(duration.toHours() % 24) + " hours have passed since the end of the course program");
+
+        }
+
+        numberOfHours = Math.abs(duration.toHours());
 
 
-        //return endDate.getHour() + "days" + reportDate.getHour() + "hours to the END of the ";
+        return numberOfHours;
+
+
     }
+
+
 }
 

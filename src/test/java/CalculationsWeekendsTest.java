@@ -16,41 +16,21 @@ public class CalculationsWeekendsTest {
     private Student student1;
     private Student student2;
 
-    public static Stream<Arguments> zeroWeekendDays_10AM(){
+    public static Stream<Arguments> WeekendDays() {
         return Stream.of(
-                Arguments.of(1,0),
-                Arguments.of(8,0),
-                Arguments.of(15,0)
+                Arguments.of(1, 0),
+                Arguments.of(8, 0),
+                Arguments.of(15, 0),
+                Arguments.of(41, 2),
+                Arguments.of(49, 2),
+                Arguments.of(81, 4),
+                Arguments.of(89, 4),
+                Arguments.of(121, 6),
+                Arguments.of(129, 6),
+                Arguments.of(161, 8),
+                Arguments.of(169, 8)
         );
     }
-    public static Stream<Arguments> twoWeekendDays_10AM(){
-        return Stream.of(
-                Arguments.of(41,2),
-                Arguments.of(49,2)
-
-        );
-    }
-    public static Stream<Arguments> fourWeekendDays_10AM(){
-        return Stream.of(
-                Arguments.of(81,4),
-                Arguments.of(89,4)
-
-        );
-    }
-    public static Stream<Arguments> sixWeekendDays_10AM(){
-        return Stream.of(
-                Arguments.of(121,6),
-                Arguments.of(129,6)
-
-        );
-    }
-    public static Stream<Arguments> eightWeekendDays_10AM(){
-        return Stream.of(
-                Arguments.of(161,8),
-                Arguments.of(169,8)
-        );
-    }
-
 
 
     @BeforeEach
@@ -105,81 +85,8 @@ public class CalculationsWeekendsTest {
 
 
     @ParameterizedTest
-    @MethodSource("zeroWeekendDays_10AM")
-    public void itShouldCheckCalculationsHowManySaturdaysAndSundaysForZeroWeekendDays(int courseDuration, int expectedWeekendDays) {
-
-        String input = "2022-07-11 10:00:00";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime startDate = LocalDateTime.parse(input, formatter);
-
-        //when
-        int numberOfWeekendDaysResult = Calculations.calculateHowManySaturdaysAndSundays(courseDuration, startDate);
-
-        Assertions.assertEquals(expectedWeekendDays, numberOfWeekendDaysResult);
-
-
-
-
-    }
-
-    @ParameterizedTest
-    @MethodSource("twoWeekendDays_10AM")
-    public void itShouldCheckCalculationsHowManySaturdaysAndSundaysForTwoWeekendDays(int courseDuration, int expectedWeekendDays) {
-
-        String input = "2022-07-11 10:00:00";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime startDate = LocalDateTime.parse(input, formatter);
-
-        //when
-        int numberOfWeekendDaysResult = Calculations.calculateHowManySaturdaysAndSundays(courseDuration, startDate);
-
-        Assertions.assertEquals(expectedWeekendDays, numberOfWeekendDaysResult);
-
-
-
-
-    }
-
-    @ParameterizedTest
-    @MethodSource("fourWeekendDays_10AM")
-    public void itShouldCheckCalculationsHowManySaturdaysAndSundaysForFourWeekendDays(int courseDuration, int expectedWeekendDays) {
-
-        String input = "2022-07-11 10:00:00";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime startDate = LocalDateTime.parse(input, formatter);
-
-        //when
-        int numberOfWeekendDaysResult = Calculations.calculateHowManySaturdaysAndSundays(courseDuration, startDate);
-
-        Assertions.assertEquals(expectedWeekendDays, numberOfWeekendDaysResult);
-
-
-
-
-    }
-
-
-    @ParameterizedTest
-    @MethodSource("sixWeekendDays_10AM")
-    public void itShouldCheckCalculationsHowManySaturdaysAndSundaysForSixWeekendDays(int courseDuration, int expectedWeekendDays) {
-
-        String input = "2022-07-11 10:00:00";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime startDate = LocalDateTime.parse(input, formatter);
-
-        //when
-        int numberOfWeekendDaysResult = Calculations.calculateHowManySaturdaysAndSundays(courseDuration, startDate);
-
-        Assertions.assertEquals(expectedWeekendDays, numberOfWeekendDaysResult);
-
-
-
-
-    }
-
-    @ParameterizedTest
-    @MethodSource("eightWeekendDays_10AM")
-    public void itShouldCheckCalculationsHowManySaturdaysAndSundaysForEightWeekendDays(int courseDuration, int expectedWeekendDays) {
+    @MethodSource("WeekendDays")
+    public void itShouldCheckCalculationsHowManySaturdaysAndSundays(int courseDuration, int expectedWeekendDays) {
 
         String input = "2022-07-11 10:00:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -193,7 +100,8 @@ public class CalculationsWeekendsTest {
 
     }
 
-    }
+
+}
 
 
 
