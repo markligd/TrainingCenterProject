@@ -33,7 +33,7 @@ public class ReportGenerator {
                 System.out.println("Generating report, date - " + date);
                 System.out.println(student.getFirstName() + " " + student.getSecondName());
                 System.out.println("Program Duration: " + Calculations.calculateDuration(student) + " hours");
-                System.out.println(endDate);
+                System.out.println("End Date: " + endDate);
                 System.out.println(student.getPosition());
                 Calculations.calculateDaysToTheEndOfCourseProgram(sumOfCoursesDuration, startDate, reportDate);
                 break;
