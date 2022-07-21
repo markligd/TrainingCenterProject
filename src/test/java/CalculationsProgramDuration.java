@@ -1,20 +1,22 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class CalculationsProgramDuration {
+    private Student student1;
+    private Student student2;
 
-    public static void main(String[] args) {
-
-
-        String input = "2022-07-11 12:00:00";
+    @BeforeEach
+    public void setUp() {
+        String input = "2022-07-11 10:00:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime startDate = LocalDateTime.parse(input, formatter);
 
-        LocalDateTime reportDate = LocalDateTime.now();
-
-        List<Student> studentsList = new ArrayList<>();
         List<Course> javaCourseList = new ArrayList<>();
         List<Course> aqeCourseList = new ArrayList<>();
         Course course1 = new Course("Java", 16);
@@ -25,28 +27,37 @@ public class Main {
         Course course5 = new Course("Page Object", 16);
         Course course6 = new Course("Selenium", 16);
 
-        Student student1 = new Student("Oleg", "Ivanov", "Java Developer", startDate, javaCourseList);
-        Student student2 = new Student("Marek", "Pietruszka", "AQE", startDate, aqeCourseList);
+
+        student1 = new Student("Oleg", "Ivanov", "Java Developer", startDate, javaCourseList);
+        student2 = new Student("Marek", "Pietruszka", "AQE", startDate, aqeCourseList);
 
 
         javaCourseList.add(course1);
         javaCourseList.add(course2);
         javaCourseList.add(course3);
+
         aqeCourseList.add(course4);
         aqeCourseList.add(course5);
         aqeCourseList.add(course6);
 
-        studentsList.add(student1);
-        studentsList.add(student2);
+    }
+
+    @Test
+    public void itShouldCheckProgramCalculateDuration() {
+        //given
+        int javaCourseDuration = 56;
+        int aqeCourseDuration = 42;
 
 
-        studentsList.forEach(student -> ReportGenerator.generateReport(student, Calculations.calculateDuration(student), startDate, reportDate));
+        //when
+        int javaResult = Calculations.calculateDuration(student1);
+        int aqeResult = Calculations.calculateDuration(student2);
+
+        //then
+        Assertions.assertEquals(javaCourseDuration, javaResult);
+        Assertions.assertEquals(aqeCourseDuration, aqeResult);
+
 
     }
 
-
 }
-
-
-
-
