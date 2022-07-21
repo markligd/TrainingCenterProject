@@ -11,6 +11,7 @@ public class CalculationsProgramDuration {
     private Student student1;
     private Student student2;
 
+
     @BeforeEach
     public void setUp() {
         String input = "2022-07-11 10:00:00";
@@ -40,24 +41,29 @@ public class CalculationsProgramDuration {
         aqeCourseList.add(course5);
         aqeCourseList.add(course6);
 
+
     }
 
     @Test
-    public void itShouldCheckProgramCalculateDuration() {
-        //given
+    public void itShouldCheckProgramCalculateDurationForStudent1() {
+
         int javaCourseDuration = 56;
+
+        int javaResult = Calculations.calculateDuration(student1);
+
+        Assertions.assertEquals(javaCourseDuration, javaResult);
+
+
+
+    }
+    @Test
+    public void itShouldCheckProgramCalculateDurationForStudent2() {
+
         int aqeCourseDuration = 42;
 
-
-        //when
-        int javaResult = Calculations.calculateDuration(student1);
         int aqeResult = Calculations.calculateDuration(student2);
 
-        //then
-        Assertions.assertEquals(javaCourseDuration, javaResult);
         Assertions.assertEquals(aqeCourseDuration, aqeResult);
-
-
     }
 
 }
